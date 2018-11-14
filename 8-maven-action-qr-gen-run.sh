@@ -9,4 +9,6 @@ exit 1
 fi
 
 # Run function
-./bin/wsk -i action invoke -br qr -p text 'Hello world!'
+INVOKE_RESULT=$(./bin/wsk -i action invoke -br qr -p text 'Hello world!')
+printf "\nINVOKE_RESULT\n${INVOKE_RESULT}\n\n"
+echo ${INVOKE_RESULT} | jq -r '.qr' | base64 --decode > qr.png

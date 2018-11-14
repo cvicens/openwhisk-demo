@@ -19,6 +19,6 @@ export AUTH_SECRET=$(oc get secret whisk.auth -n ${PROJECT_NAME} -o yaml | grep 
 
 # Create an action from a Javascript function...
 ./bin/wsk -i action delete greeter
-./bin/wsk -i action create greeter ./node/greeter.js
+./bin/wsk -i action create --web=true greeter ./node/greeter.js
 
 
