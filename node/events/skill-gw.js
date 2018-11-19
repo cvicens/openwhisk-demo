@@ -45,8 +45,7 @@ let _response = {
     outputSpeech: {
       type: "PlainText",
       text: null
-    },
-    sessionAttributes: null
+    }
   },
   version: "1.0"
 };
@@ -102,7 +101,7 @@ function listEvents(intent) {
 
   _response.response.outputSpeech.text = event.title + ". " + event.subtitle;
   _response.response.shouldEndSession = false,
-  _response.response.sessionAttributes = {
+  _response.sessionAttributes = {
     eventId: event.id
   }
 
@@ -116,37 +115,16 @@ function whatsNext (session) {
     return _response;
   }
 
-  const eventId = 'pending...';
+  const eventId = session.attributes.eventId;
+  console.log('eventId', eventId)
 
   const slots = DUMMY_SLOTS;
 
   const next = slots[4];
 
-  _response.response.outputSpeech.text = "The next slot is titled, " + next.title; // + " at " + next.time;
-  _response.response.sessionAttributes = {
-    next: next
-  }
-
-  return _response;
-}
-
-function whatsNext (session) {
-  if (!session) {
-    _response.response.outputSpeech.text = "Wrong parameters or unknow error";
-    _response.response.shouldEndSession = false;
-    return _response;
-  }
-
-  const eventId = 'pending...';
-
-  const slots = DUMMY_SLOTS;
-
-  const next = slots[4];
-
-  _response.response.outputSpeech.text = "The next slot is titled, " + next.title; // + " at " + next.time;
-  _response.response.sessionAttributes = {
-    next: next
-  }
+  _response.response.outputSpeech.text = "The next slot for event " + eventId +  " is titled, " + next.title; // + " at " + next.time;
+  _response.sessionAttributes = session.attributes || {};
+  _response.sessionAttributes.next = next;
 
   return _response;
 }
@@ -158,16 +136,16 @@ function whatsNow (session) {
     return _response;
   }
 
-  const eventId = 'pending...';
+  const eventId = session.attributes.eventId;
+  console.log('eventId', eventId)
 
   const slots = DUMMY_SLOTS;
 
-  const next = slots[3];
+  const now = slots[3];
 
-  _response.response.outputSpeech.text = "The current slot is titled, " + next.title; // + " at " + next.time;
-  _response.response.sessionAttributes = {
-    next: next
-  }
+  _response.response.outputSpeech.text = "The current slot for event " + eventId +  " is titled, " + now.title; // + " at " + now.time;
+  _response.sessionAttributes = session.attributes || {};
+  _response.sessionAttributes.now = now;
 
   return _response;
 }
