@@ -2,7 +2,7 @@
 # https://github.com/apache/incubator-openwhisk-deploy-openshift
 
 # Environment
-. ./0-environment.sh
+. ./00-environment.sh
 
 TOKEN=$(oc whoami -t)
 
@@ -11,11 +11,11 @@ echo "You need to log in your Openshift cluster first..."
 exit 1
 fi
 
-# Run greeter action
+# Inovoke greeter action
 INVOKE_RESULT=$(./bin/wsk -i action invoke --result greeter -p name 'Carlos' -p place 'Lisbon')
 printf "\nINVOKE\n${INVOKE_RESULT}\n\n"
 
-# Execute
+# Info to invoke the rest API
 export WEB_URL=`./bin/wsk -i action get greeter --url | awk 'FNR==2{print $1}'`
 export AUTH=`oc get secret whisk.auth -o yaml | grep "system:" | awk '{print $2}'`
 

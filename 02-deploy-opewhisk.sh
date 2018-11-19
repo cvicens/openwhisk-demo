@@ -2,7 +2,7 @@
 # https://github.com/apache/incubator-openwhisk-deploy-openshift
 
 # Environment
-. ./0-environment.sh
+. ./00-environment.sh
 
 read -p 'Master URL: ' MASTER_URL
 read -sp 'Token: ' TOKEN
@@ -18,7 +18,8 @@ oc login ${MASTER_URL} --token=${TOKEN}
 
 oc new-project ${PROJECT_NAME}
 
-oc process -f https://git.io/openwhisk-template | oc -n ${PROJECT_NAME} create -f -
+#oc process -f https://git.io/openwhisk-template | oc -n ${PROJECT_NAME} create -f -
+oc process -f ./openwhisk-ephemeral-template.yaml | oc -n ${PROJECT_NAME} create -f -
 
 while oc get pods -n ${PROJECT_NAME} | grep -v -E "(Running|Completed|STATUS)"; do sleep 5; done
 

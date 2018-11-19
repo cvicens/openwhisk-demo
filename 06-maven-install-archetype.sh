@@ -2,7 +2,7 @@
 # https://github.com/apache/incubator-openwhisk-deploy-openshift
 
 # Environment
-. ./0-environment.sh
+. ./00-environment.sh
 
 BASE_DIR=$(pwd)
 

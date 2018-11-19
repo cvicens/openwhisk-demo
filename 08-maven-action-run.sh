@@ -1,5 +1,5 @@
 # Environment
-. ./0-environment.sh
+. ./00-environment.sh
 
 TOKEN=$(oc whoami -t)
 
