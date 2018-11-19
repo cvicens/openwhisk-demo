@@ -55,6 +55,7 @@ function main(params) {
     const request = params.request;
     const session = params.session;
     console.log('request: ', JSON.stringify(request));
+    console.log('session: ', JSON.stringify(session));
     if (!request || !request.type || !request.intent || !request.intent.name) {
       _response.response.outputSpeech.text = 'Wrong intent or unknow error';
       _response.response.shouldEndSession = true;

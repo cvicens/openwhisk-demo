@@ -22,9 +22,6 @@ export AUTH_SECRET=$(oc get secret whisk.auth -n ${PROJECT_NAME} -o yaml | grep 
 
 # Create an action from a Javascript function...
 ../../bin/wsk -i action update --web=true events/skill-gw ./skill-gw.js
-../../bin/wsk -i action update --web=true events/skill-list ./skill-list-events.js
-../../bin/wsk -i action update --web=true events/skill-current-slot ./skill-current-slot.js
-../../bin/wsk -i action update --web=true events/skill-next-slot ./skill-next-slot.js
 
 # Get List Events host and the SSL cert used
 export FN_HOST=`../../bin/wsk -i action get events/skill-gw --url | awk 'FNR==2{print $1}' | sed -e 's/https:\/\///' | sed -e 's/\/.*$//'`
