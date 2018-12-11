@@ -18,7 +18,6 @@ export AUTH_SECRET=$(oc get secret whisk.auth -n ${PROJECT_NAME} -o yaml | grep 
 ./bin/wsk property set --auth ${AUTH_SECRET} --apihost $(oc get route/openwhisk --template="{{.spec.host}}" -n ${PROJECT_NAME})
 
 # Create an action from a Javascript function...
-./bin/wsk -i action delete greeter
-./bin/wsk -i action create --web=true greeter ./node/greeter.js
+./bin/wsk -i action update --web=true greeter ./node/greeter.js
 
 

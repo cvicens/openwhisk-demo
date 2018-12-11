@@ -99,7 +99,7 @@ function listEvents(intent) {
   // Only one event is possible per city and date
   const event = DUMMY_EVENT;
 
-  _response.response.outputSpeech.text = event.title + ". " + event.subtitle;
+  _response.response.outputSpeech.text = event.title + ". " + event.subtitle + ". I'm happy.";
   _response.response.shouldEndSession = false,
   _response.sessionAttributes = {
     eventId: event.id
@@ -120,7 +120,7 @@ function whatsNext (session) {
 
   const slots = DUMMY_SLOTS;
 
-  const next = slots[4];
+  const next = slots[2];
 
   _response.response.outputSpeech.text = "The next slot for event " + eventId +  " is titled, " + next.title; // + " at " + next.time;
   _response.sessionAttributes = session.attributes || {};
@@ -141,7 +141,7 @@ function whatsNow (session) {
 
   const slots = DUMMY_SLOTS;
 
-  const now = slots[3];
+  const now = slots[1];
 
   _response.response.outputSpeech.text = "The current slot for event " + eventId +  " is titled, " + now.title; // + " at " + now.time;
   _response.sessionAttributes = session.attributes || {};

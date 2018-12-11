@@ -5,8 +5,6 @@ export PLATFORM="mac"
 
 export PROJECT_NAME="openwhisk-demo"
 
-export OS="osx" # osx | linux
-
 export MINISHIFT_VERSION="v3.11.0"
 
 export MINISHIFT_PROFILE="openwhisk"

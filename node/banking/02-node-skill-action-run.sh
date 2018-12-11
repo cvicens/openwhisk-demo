@@ -11,8 +11,8 @@ echo "You need to log in your Openshift cluster first..."
 exit 1
 fi
 
-CLIENT_ID="dummy"
-CLIENT_SECRET="dummy"
+CLIENT_ID="SBM_vmB04xxk8td"
+CLIENT_SECRET="ATbzm8FtX3e9qHe"
 
 # Info to invoke the rest API
 export AUTH=`oc get secret whisk.auth -o yaml | grep "system:" | awk '{print $2}'`
