@@ -3,7 +3,7 @@
 
 A while ago I was proposed to run a tech lab around the 'serverless' buzzword. By then I was already aware of the concept (I tried AWS back in 2015) and actually liked it, but to be honest since those experiments I had had very little contact with serveless tech, until Red Hat released some interesting labs (more on this later).
 
-##TL;DR
+## TL;DR
 
 I'll introduce you to a set of explained simple demos of increasing complexity.
 I also give some hints to make sense of 'serverless' and 'function as a service' in the real world.
