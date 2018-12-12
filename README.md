@@ -179,7 +179,7 @@ https://openwhisk-openwhisk-demo.apps.serverless-e442.openshiftworkshop.com/api/
 
 If we store the result in a variable, we can then use `curl` for testing.
 
-> Pay attention we need to add '.json' to the URL in order to use it with HTTP
+> **Pay attention!** You need to add '.json' to the URL for the action to return JSON. '.text' would return text, etc. Go [here](https://medium.com/openwhisk/serverless-http-handlers-with-openwhisk-90a986cc7cdd) for nice article mentioning web actions and other content types.
 
 ```
 $ export WEB_URL=`./bin/wsk -i action get greeter --url | awk 'FNR==2{print $1}'`
