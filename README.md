@@ -9,7 +9,7 @@ I also give some hints to make sense of 'serverless' and 'function as a service'
 
 ## Pre-requisites
 
-In order to run these demos you need either an accesible [Openshift](https://www.openshift.com/learn/what-is-openshift/) environment with around 5GB RAM / 50GB disk / 3 vCPU  or a computer at hand with minishift installed and those free resources.
+In order to run these demos you need either an accessible [Openshift](https://www.openshift.com/learn/what-is-openshift/) environment with around 5GB RAM / 50GB disk / 3 vCPU  or a computer at hand with minishift installed and those free resources.
 
 ```
 $ minishift version
@@ -29,15 +29,15 @@ $ git clone https://github.com/cvicens/openwhisk-demo
 $ cd openwhisk-demo
 ```
 
-By default I'll assume you're in folder `openwhisk-demo` unless otherwise adviced.
+By default I'll assume you're in folder `openwhisk-demo` unless otherwise advised.
 
-## Setting up the minishift enviroment
+## Setting up the minishift environment
 
 > *If you already have an Openshift environment you can skip this.*
 
-In order to set up our demo, we need to run `./01-setup-minishift.sh`. Please have a look to `./00-environment.sh` to confirm the default vaules for the minishift profile we're going to create. 
+In order to set up our demo, we need to run `./01-setup-minishift.sh`. Please have a look to `./00-environment.sh` to confirm the default values for the minishift profile we're going to create. 
 
-> Pay special attention to variables MINISHIFT_VM_DRIVER and PLATFORM to make then match your enviroment!
+> Pay special attention to variables MINISHIFT_VM_DRIVER and PLATFORM to make then match your environment!
 
 ```
 $ ./01-setup-minishift.sh
@@ -55,7 +55,7 @@ Now please log in to your minishift with the next script.
 $ ./02-login-minishift.sh
 ```
 
-## Deploying Openwhisk on Openshift
+## Deploying OpenWhisk on Openshift
 
 > If you have your own OpenShift environment, don't forget to login in using the `oc` tool... otherwise you'll get this message: `You need to log in your Openshift cluster first...`
 
@@ -114,7 +114,7 @@ There are several Javascript and Java examples.
 In general demos are divided into two scripts:
 
 * one to deploy the function
-* and another onet to run it
+* and another one to run it
 
 Let's start with the basics.
 
@@ -152,7 +152,7 @@ $ ./bin/wsk -i action invoke --result greeter -p name 'Carlos' -p place 'Lisbon'
 }
 ```
 
-Same, call, but this time in an asynchonous way
+Same, call, but this time in an asynchronous way
 
 ```
 $ ./bin/wsk -i action invoke greeter -p name 'Carlos' -p place 'Lisbon'
@@ -202,7 +202,7 @@ The OpenWhisk Java runtime needs your function to have this exact signature.
 public static com.google.gson.JsonObject main(com.google.gson.JsonObject);
 ```
 
-Although it's not necessary, as we just said the only requirement is to hava a Java class inclugina a method as specified, in this example we're going to use a Maven archetype.
+Although it's not necessary, as we just said the only requirement is to have a Java class including a method as specified, in this example we're going to use a Maven archetype.
 
 **Our first task is to install the archetype**
 
@@ -234,7 +234,7 @@ $ mvn clean package
 
 After generating and packaging the sample function a jar file should have been generated at `./${ARTIFACT_ID}/target/${ARTIFACT_ID}.jar`
 
-Next step is to deploy our function in OpenWhisk, to do so we need the name of the action (in the next example is `demo`) the path to the jar file and the fully qualifed name of the class that contains our function.
+Next step is to deploy our function in OpenWhisk, to do so we need the name of the action (in the next example is `demo`) the path to the jar file and the fully qualified name of the class that contains our function.
 
 > By default when using the archetype`-DgroupId=com.redhat.serverless` means `--main com.redhat.serverless.FunctionApp`
 
