@@ -1,12 +1,13 @@
 # Going serverless on Openshift with OpenWhisk
 **Set of 'look ma no server' demos to enjoy OpenWhisk**
 
-A while ago I was proposed to run a tech lab around the 'serverless' buzzword. By then I was already aware of the concept (I tried AWS back in 2015) and actually liked it, but to be honest since those experiments I had had very little contact with serveless tech, until Red Hat released some interesting labs (more on this later).
+A while ago I was proposed to run a tech lab around the 'serverless' buzzword. By then I was already aware of the concept (I tried AWS back in 2015) and actually liked it, but to be honest since those experiments I had had very little contact with serverless tech, until Red Hat released some interesting labs (more on this later).
 
 ## TL;DR
 
 I'll introduce you to a set of explained simple demos of increasing complexity.
 I also give some hints to make sense of 'serverless' and 'function as a service' in the real world.
+This is part 1 of (maybe) 3, other parts (code is already included in folder ./node) will include an Alexa Skill and an integration with AHOI API
 
 ## Pre-requisites
 
@@ -295,6 +296,6 @@ $ ./bin/wsk -i action invoke -br qr -p text 'Hola mundo!'
 ./10-maven-action-qr-gen-run.sh
 ```
 
-# Live lab environment
+# Want to try some of this live?
 
-https://learn.openshift.com/serverless/
+Then go [here](https://learn.openshift.com/serverless/) and enjoy!
