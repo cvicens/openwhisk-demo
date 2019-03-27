@@ -99,7 +99,7 @@ function listEvents(intent) {
   // Only one event is possible per city and date
   const event = DUMMY_EVENT;
 
-  _response.response.outputSpeech.text = event.title + ". " + event.subtitle + ". I'm happy.";
+  _response.response.outputSpeech.text = event.title + ". " + event.subtitle + ". I'm sad.";
   _response.response.shouldEndSession = false,
   _response.sessionAttributes = {
     eventId: event.id

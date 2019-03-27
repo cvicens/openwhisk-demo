@@ -3,7 +3,8 @@
 # linux | mac | windows
 export PLATFORM="mac"
 
-export PROJECT_NAME="openwhisk-demo"
+export PROJECT_NAME="openwhisk-infra"
+export DEFAULT_PACKAGE="${USER_NAME:-lab}"
 
 export MINISHIFT_VERSION="v3.11.0"
 

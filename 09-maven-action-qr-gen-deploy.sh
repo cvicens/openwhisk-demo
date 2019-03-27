@@ -24,6 +24,9 @@ cd ${BASE_DIR}
 export AUTH_SECRET=$(oc get secret whisk.auth -n ${PROJECT_NAME} -o yaml | grep "system:" | awk '{print $2}' | base64 --decode)
 ./bin/wsk property set --auth ${AUTH_SECRET} --apihost $(oc get route/openwhisk --template="{{.spec.host}}" -n ${PROJECT_NAME})
 
+# Create default package
+./bin/wsk -i package create ${DEFAULT_PACKAGE}
+
 # Create function
-./bin/wsk -i action update --web=true qr maven/${ARTIFACT_ID}/target/${ARTIFACT_ID}.jar --main com.redhat.serverless.FunctionApp
+./bin/wsk -i action update --web=true ${DEFAULT_PACKAGE}/qr maven/${ARTIFACT_ID}/target/${ARTIFACT_ID}.jar --main com.redhat.serverless.FunctionApp
 

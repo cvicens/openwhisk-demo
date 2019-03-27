@@ -1,7 +1,7 @@
 # Going serverless on Openshift with OpenWhisk
 **Set of 'look ma no server' demos to enjoy OpenWhisk**
 
-A while ago I was proposed to run a tech lab around the 'serverless' buzzword. By then I was already aware of the concept (I tried AWS back in 2015) and actually liked it, but to be honest since those experiments I had had very little contact with serverless tech, until Red Hat released some interesting labs (more on this later).
+A while ago I was proposed to run a tech lab around the 'serverless' buzzword. By then I was already aware of the concept (I tried AWS Lambda back in 2015) and actually liked it, but to be honest since those experiments I had had very little contact with serverless tech, until Red Hat released some interesting labs (more on this later) and I started again to feel the rush of pushing code and run it live. So… if you haven't tried it, you should!
 
 ## TL;DR
 
@@ -35,7 +35,7 @@ By default I'll assume you're in folder `openwhisk-demo` unless otherwise advise
 
 ## Setting up the minishift environment
 
-> *If you already have an Openshift environment you can skip this.*
+> *If you already have an Openshift environment you can skip this. You could also skip this if you want to use the learning area [here](https://learn.openshift.com/serverless/) (maybe you need to make slight changes… honestly I haven't tried but it should work well)*
 
 In order to set up our demo, we need to run `./01-setup-minishift.sh`. Please have a look to `./00-environment.sh` to confirm the default values for the minishift profile we're going to create. 
 
@@ -45,10 +45,40 @@ In order to set up our demo, we need to run `./01-setup-minishift.sh`. Please ha
 $ ./01-setup-minishift.sh
 ```
 
-After a while should get a message like this.
+After a while should get messages like these...
 
 ```
+$ ./01-setup-minishift.sh 
+Profile 'openwhisk' set as active profile.
+No Minishift instance exists. New 'memory' setting will be applied on next 'minishift start'
+No Minishift instance exists. New 'cpus' setting will be applied on next 'minishift start'
+No Minishift instance exists. New 'vm-driver' setting will be applied on next 'minishift start'
+No Minishift instance exists. New 'disk-size' setting will be applied on next 'minishift start'
+Add-on 'admin-user' enabled
+Add-on 'anyuid' enabled
+-- Starting profile 'openwhisk'
+-- Check if deprecated options are used ... OK
+-- Checking if https://github.com is reachable ... OK
+-- Checking if requested OpenShift version 'v3.11.0' is valid ... OK
+-- Checking if requested OpenShift version 'v3.11.0' is supported ... OK
 ...
+The server is accessible via web console at:
+    https://192.168.64.41:8443/console
+
+You are logged in as:
+    User:     developer
+    Password: <any value>
+
+To login as administrator:
+    oc login -u system:admin
+
+
+-- Applying addon 'admin-user':..
+-- Applying addon 'anyuid':.
+ Add-on 'anyuid' changed the default security context constraints to allow pods to run as any user.
+ Per default OpenShift runs containers using an arbitrarily assigned user ID.
+ Refer to https://docs.okd.io/latest/architecture/additional_concepts/authorization.html#security-context-constraints and
+ https://docs.okd.io/latest/creating_images/guidelines.html#openshift-origin-specific-guidelines for more information.
 ```
 
 Now please log in to your minishift with the next script.
@@ -69,7 +99,7 @@ oc process -f https://git.io/openwhisk-template | oc create -f -
 
 To make it a little easier (I hope) I've prepared a script that creates a project/namespace (by default `openwhisk-demo`), deploys OpenWhisk in it, and downloads and sets up the OpenWhisk CLI `wsk` in `./bin`
 
-So let's do this, please, run the script as follows.
+So let's do this, please run the script as follows.
 
 > **Please ignore this error if hit:** unable to recognize no matches for kind "CronJob" in version "batch/v2alpha1"
 
@@ -154,7 +184,7 @@ $ ./bin/wsk -i action invoke --result greeter -p name 'Carlos' -p place 'Lisbon'
 }
 ```
 
-Same, call, but this time in an asynchronous way
+Same call, but this time in an asynchronous way
 
 ```
 $ ./bin/wsk -i action invoke greeter -p name 'Carlos' -p place 'Lisbon'

@@ -9,15 +9,13 @@ exit 1
 fi
 
 # Run function
-INVOKE_RESULT=$(./bin/wsk -i action invoke -br qr -p text 'Hola mundo!')
+INVOKE_RESULT=$(./bin/wsk -i action invoke -br  ${DEFAULT_PACKAGE}/qr -p text 'Hola mundo!')
 printf "\nINVOKE_RESULT\n${INVOKE_RESULT}\n\n"
 echo ${INVOKE_RESULT} | jq -r '.qr' | base64 --decode > qr.png
 open qr.png
 
-export WEB_URL=`./bin/wsk -i action get qr --url | awk 'FNR==2{print $1}'`
-export AUTH=`oc get secret whisk.auth -o yaml | grep "system:" | awk '{print $2}'`
+export WEB_URL=`./bin/wsk -i action get ${DEFAULT_PACKAGE}/qr --url | awk 'FNR==2{print $1}'`
 echo "WEB_URL: ${WEB_URL}"
-echo "AUTH: ${AUTH}"
 
 # GET
 GET_RESULT=$(curl -k --silent -X GET ${WEB_URL}.json?text=Hi%20from%20GET)

@@ -12,11 +12,11 @@ exit 1
 fi
 
 # Inovoke greeter action
-INVOKE_RESULT=$(./bin/wsk -i action invoke --result greeter -p name 'Carlos' -p place 'Lisbon')
+INVOKE_RESULT=$(./bin/wsk -i action invoke --result ${DEFAULT_PACKAGE}/greeter -p name 'Carlos' -p place 'Lisbon')
 printf "\nINVOKE\n${INVOKE_RESULT}\n\n"
 
 # Info to invoke the rest API
-export WEB_URL=`./bin/wsk -i action get greeter --url | awk 'FNR==2{print $1}'`
+export WEB_URL=`./bin/wsk -i action get ${DEFAULT_PACKAGE}/greeter --url | awk 'FNR==2{print $1}'`
 
 echo "WEB_URL: ${WEB_URL}"
 

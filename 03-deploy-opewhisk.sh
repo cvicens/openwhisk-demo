@@ -29,5 +29,3 @@ export AUTH_SECRET=$(oc get secret whisk.auth -n ${PROJECT_NAME} -o yaml | grep 
 
 # List
 ./bin/wsk -i list
-
-

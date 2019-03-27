@@ -9,4 +9,4 @@ exit 1
 fi
 
 # Run function
-./bin/wsk -i action invoke demo --result
+./bin/wsk -i action invoke ${DEFAULT_PACKAGE}/java-greeter --result
